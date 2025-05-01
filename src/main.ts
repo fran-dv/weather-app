@@ -1,4 +1,2 @@
-import './index.css'
-
-
-
+import "./index.css";
+import { fetchWeatherData } from "./infraestructure";
