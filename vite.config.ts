@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import dotenv from "dotenv";
 import path from "path";
+import tailwindcss from '@tailwindcss/vite'
 
 dotenv.config();
 
@@ -13,4 +14,7 @@ export default defineConfig({
   define: {
     "process.env": process.env,
   },
+  plugins: [
+    tailwindcss(),
+  ],
 });
