@@ -11,7 +11,7 @@ interface Props {
   location: Location;
 }
 
-export const fetchWeatherData = async ({ location }: Props) => {
+export const fetchWeatherDataByLocation = async ({ location }: Props): Promise<void | JSON> => {
   const weatherJSON = await fetchWithErrorHandle(
     getVisualCrossingUrl(location),
   );
