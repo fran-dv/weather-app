@@ -14,6 +14,7 @@ const transformSchemaToWeatherData = (data: z.infer<typeof visualCrossingRespons
         date: data.days.datetime,
         hour: data.currentConditions.datetime,
         windspeed: data.currentConditions.windspeed,
+        conditions: data.currentConditions.conditions,
     };
     
     return weatherData;

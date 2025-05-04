@@ -16,6 +16,7 @@ export interface WeatherData {
   date: string;
   hour: string;
   windspeed: number; 
+  conditions: string;
 }
 
 export const visualCrossingResponseSchema = z.object({
@@ -28,6 +29,7 @@ export const visualCrossingResponseSchema = z.object({
     precip: z.number(),
     temp: z.number(),
     windspeed: z.number(),
+    conditions: z.string(),
   }),
   days: z.array(z.object({ datetime: z.string() })).transform((days) => days[0]),
   description: z.string(),
