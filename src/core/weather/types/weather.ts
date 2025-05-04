@@ -13,17 +13,23 @@ export interface WeatherData {
   humidity: number;
   icon: string;
   precip: number;
+  date: string;
+  hour: string;
+  windspeed: number; 
 }
 
 export const visualCrossingResponseSchema = z.object({
   resolvedAddress: z.string(),
   currentConditions: z.object({
+    datetime: z.string(),
     feelslike: z.number(),
     humidity: z.number(),
     icon: z.string(),
     precip: z.number(),
     temp: z.number(),
+    windspeed: z.number(),
   }),
+  days: z.array(z.object({ datetime: z.string() })).transform((days) => days[0]),
   description: z.string(),
 })
 
