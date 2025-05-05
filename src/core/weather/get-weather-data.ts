@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { visualCrossingResponseSchema, WeatherData } from "./types";
+import { visualCrossingResponseSchema, WeatherData } from "@/core";
 import { getTempFromFahrenheit } from "@/utilities";
 
 const transformSchemaToWeatherData = (
@@ -22,7 +22,9 @@ const transformSchemaToWeatherData = (
   return weatherData;
 };
 
-const apiResponseToWeatherData = (apiResponse: JSON): WeatherData | null => {
+export const apiResponseToWeatherData = (
+  apiResponse: JSON,
+): WeatherData | null => {
   const data = visualCrossingResponseSchema.safeParse(apiResponse);
 
   if (!data.success) {
@@ -34,5 +36,3 @@ const apiResponseToWeatherData = (apiResponse: JSON): WeatherData | null => {
 
   return transformSchemaToWeatherData(data.data);
 };
-
-export default apiResponseToWeatherData;

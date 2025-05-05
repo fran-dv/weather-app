@@ -7,31 +7,31 @@
     <title>Weather app</title>
   </head>
   <body
-    class="flex h-screen w-screen flex-col items-center gap-5 bg-gray-900 p-10 pb-0"
+    class="flex h-screen w-screen flex-col items-center gap-5 bg-gray-900 p-5 pb-0 sm:p-10 sm:pb-0"
   >
     <div
       id="search-bar"
-      class="flex h-13 w-1/2 rounded-lg border border-gray-400"
+      class="flex h-13 w-[90%] rounded-lg border border-gray-400 sm:w-[80%] lg:w-1/2"
     >
       <input
         type="text"
         placeholder="Enter a location"
-        class="h-full w-full border-0 p-2 ring-0 focus:outline-none"
+        class="h-full w-full border-0 p-2 text-xl ring-0 focus:outline-none"
       />
-      <div
+      <button
         class="flex h-full w-15 cursor-pointer items-center justify-center rounded-r-lg bg-blue-500 p-2 hover:bg-blue-600"
       >
         <img
           src="./src/assets/image/search.svg"
           alt="Search"
-          class="w-2/3 text-gray-100 brightness-0 invert filter"
+          class="w-5/6 text-gray-100 brightness-0 invert filter"
         />
-      </div>
+      </button>
     </div>
 
     <div
       id="loader"
-      class="mt-auto mb-auto aspect-square w-30 flex-col place-items-center"
+      class="mt-auto mb-auto hidden aspect-square w-30 flex-col place-items-center"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
         <radialGradient
@@ -90,7 +90,7 @@
 
     <div
       id="main-content"
-      class="m mt-auto mb-auto sm:w-4/5 lg:w-5/6 xl:w-3/5"
+      class="m sm:w-95% mt-auto mb-auto flex place-items-center justify-center lg:w-5/6 xl:w-3/5"
     ></div>
 
     <footer

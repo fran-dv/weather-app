@@ -14,7 +14,7 @@ interface Props {
 
 export const fetchWeatherDataByLocation = async ({
   location,
-}: Props): Promise<void | JSON> => {
+}: Props): Promise<Error | JSON> => {
   setLoading(true);
 
   const weatherJSON = await fetchWithErrorHandle(
@@ -24,17 +24,15 @@ export const fetchWeatherDataByLocation = async ({
   if ("error" in weatherJSON) {
     // Invalid location passed
     if (weatherJSON.status === 400) {
-      console.error(
+      return new Error(
         `Invalid location: '${location}'. No data available for this location.`,
       );
-      return;
     }
     // Other error ocurred
-    console.error(
-      `Error fetching weather data for '${location}':`,
-      weatherJSON.error,
+    console.error();
+    return new Error(
+      `Error fetching weather data for '${location}': ${weatherJSON.error}`,
     );
-    return;
   }
 
   return weatherJSON;

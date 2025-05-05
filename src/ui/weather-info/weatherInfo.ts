@@ -2,27 +2,7 @@ import { WeatherData } from "@/core";
 import { generateDiv } from "@fran-dv/ui-components";
 import { Icons, iconsSvg } from "./weather-icons";
 import { format } from "date-fns";
-
-enum Classes {
-  InfoContainer = "weather-info",
-  section1 = "info-section-1",
-  iconDiv = "climate-icon",
-  feelsLikeDiv = "feelslike",
-  scaleToggle = "scale-toggle",
-  section2 = "info-section-2",
-  section3 = "info-section-3",
-  wrapper = "weather-info-wrapper",
-  InfoRow = "weather-info-row",
-  RealTemp = "real-temperature",
-}
-
-export enum Ids {
-  mainContainer = "main-content",
-}
-
-export enum DataClick {
-  toggleTempScale = "togle-scale",
-}
+import { Classes, DataClick } from "@/ui";
 
 export enum TempScales {
   cs = "°C",
@@ -94,7 +74,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   // first section styles
   firstSection.classList.add("flex", "flex-col", "w-1/2");
   iconDiv.classList.add("flex-shrink-0.2");
-  iconImg.classList.add("w-30");
+  iconImg.classList.add("w-30", "min-w-[4rem]");
   feelsLikeDiv.classList.add("flex", "gap-2", "items-center");
   tempH2.classList.add(textColor, FontSizes.H2, "font-semibold");
   scaleH2.classList.add(
