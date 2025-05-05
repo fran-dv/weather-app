@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { visualCrossingResponseSchema, WeatherData } from "@/core";
 import { getTempFromFahrenheit } from "@/utilities";
+import { getVelocityFromMph } from "@/utilities";
 
 const transformSchemaToWeatherData = (
   data: z.infer<typeof visualCrossingResponseSchema>,
@@ -12,10 +13,10 @@ const transformSchemaToWeatherData = (
     feelslike: getTempFromFahrenheit(data.currentConditions.feelslike),
     humidity: data.currentConditions.humidity,
     icon: data.currentConditions.icon,
-    precip: data.currentConditions.precip,
+    precip: data.currentConditions.precipprob,
     date: data.days.datetime,
     hour: data.currentConditions.datetime,
-    windspeed: data.currentConditions.windspeed,
+    windspeed: getVelocityFromMph(data.currentConditions.windspeed),
     conditions: data.currentConditions.conditions,
   };
 

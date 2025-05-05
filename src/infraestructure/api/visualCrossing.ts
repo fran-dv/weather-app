@@ -31,7 +31,7 @@ export const fetchWeatherDataByLocation = async ({
     // Other error ocurred
     console.error();
     return new Error(
-      `Error fetching weather data for '${location}': ${weatherJSON.error}`,
+      `${weatherJSON.error.message}`,
     );
   }
 

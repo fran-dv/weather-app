@@ -5,6 +5,11 @@ export interface Temperature {
   f: number; // in Fahrenheit
 }
 
+export interface Velocity {
+  k: number; // km/h
+  m: number; // mph
+}
+
 export interface WeatherData {
   location: string;
   description: string;
@@ -15,7 +20,7 @@ export interface WeatherData {
   precip: number;
   date: string;
   hour: string;
-  windspeed: number;
+  windspeed: Velocity;
   conditions: string;
 }
 
@@ -26,7 +31,7 @@ export const visualCrossingResponseSchema = z.object({
     feelslike: z.number(),
     humidity: z.number(),
     icon: z.string(),
-    precip: z.number(),
+    precipprob: z.number(),
     temp: z.number(),
     windspeed: z.number(),
     conditions: z.string(),

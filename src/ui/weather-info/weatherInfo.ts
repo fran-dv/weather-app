@@ -9,7 +9,13 @@ export enum TempScales {
   fh = "°F",
 }
 
+export enum VelocityUnits {
+  kmh = "km/h",
+  mph = "mph",
+}
+
 let currentScale: keyof typeof TempScales;
+let currentVelocityUnit: keyof typeof VelocityUnits;
 
 export const toggleTempScale = () => {};
 
@@ -158,7 +164,8 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const windspeedTitle = document.createElement("h3");
   const windspeedData = document.createElement("h3");
   windspeedTitle.textContent = "Windspeed";
-  windspeedData.textContent = `${data.windspeed.toFixed(2)} km/h`;
+  currentVelocityUnit = "kmh" satisfies keyof typeof VelocityUnits;
+  windspeedData.textContent = `${data.windspeed.k.toFixed(2)} ${VelocityUnits.kmh}`;
   windspeedRow.appendChild(windspeedTitle);
   windspeedRow.appendChild(windspeedData);
   thirdSection.appendChild(windspeedRow);
