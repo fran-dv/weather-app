@@ -2,7 +2,7 @@ import { setLoading } from "@/ui";
 import { fetchWithErrorHandle } from "@/utilities";
 
 const ipApiUrl =
-  "http://ip-api.com/json/?fields=status,message,country,city,query";
+  "https://ip-api.com/json/?fields=status,message,country,city,query";
 
 export const fetchUserGeolocation = async (): Promise<Error | JSON> => {
   setLoading(true);
