@@ -9,7 +9,7 @@ const displayErrorH3 = (msg: string) => {
   errorH3.textContent = `${msg} :( Please try again`;
   mainContentDiv?.appendChild(errorH3);
 
-  errorH3.classList.add("text-gray-500", "text-2xl", "w-2/3");
+  errorH3.classList.add("text-gray-500", "text-2xl", "w-2/3", "text-center");
 };
 
 export const displayWeatherInfo = (
