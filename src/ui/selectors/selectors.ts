@@ -9,6 +9,8 @@ export enum Classes {
   wrapper = "weather-info-wrapper",
   InfoRow = "weather-info-row",
   RealTemp = "real-temperature",
+  tempValue = "temp-value",
+  velocityValue = "velocity-value",
 }
 
 export enum Ids {
@@ -17,5 +19,5 @@ export enum Ids {
 }
 
 export enum DataClick {
-  toggleTempScale = "togle-scale",
+  toggleTempScale = "toggle-scale",
 }

@@ -1,5 +1,5 @@
 import "@/index.css";
-import { addListenersToSearchBar, DataClick, Ids } from "@/ui";
+import { addListenersToSearchBar, DataClick, Ids, toggleTempScale } from "@/ui";
 
 const searchBar: HTMLDivElement | null = document.querySelector(
   `#${Ids.searchBar}`,
@@ -26,10 +26,11 @@ const handleClick = (e: MouseEvent) => {
 
   switch (target.dataset.click) {
     case DataClick.toggleTempScale:
+      toggleTempScale();
       break;
   }
 };
 
-const clickHandler = () => handleClick;
+const clickHandler = (e: MouseEvent) => handleClick(e);
 
-document.addEventListener("click", clickHandler);
+document.body.addEventListener("click", clickHandler);

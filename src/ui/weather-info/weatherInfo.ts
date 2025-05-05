@@ -3,6 +3,8 @@ import { generateDiv } from "@fran-dv/ui-components";
 import { Icons, iconsSvg } from "./weather-icons";
 import { format } from "date-fns";
 import { Classes, DataClick } from "@/ui";
+import { getTempFromCelsius, getTempFromFahrenheit } from "@/utilities/temperatureConversor.utility";
+import { kmhToMph, mphToKmh } from "@/utilities/velocityConverter.utility";
 
 export enum TempScales {
   cs = "°C",
@@ -17,7 +19,43 @@ export enum VelocityUnits {
 let currentScale: keyof typeof TempScales;
 let currentVelocityUnit: keyof typeof VelocityUnits;
 
-export const toggleTempScale = () => {};
+export const toggleTempScale = () => {
+  const tempElements = document.querySelectorAll(`.${Classes.tempValue}`);
+  const velocityElements = document.querySelectorAll(`.${Classes.velocityValue}`);
+  const scaleToggleDiv = document.querySelector(`.${Classes.scaleToggle}`);
+
+  // Toggle temperature scale
+  currentScale = currentScale === "cs" ? "fh" : "cs";
+  tempElements.forEach((element) => {
+    const tempValue = parseFloat(element.textContent || "0");
+    const newTemp = currentScale === "cs"
+      ? getTempFromFahrenheit(tempValue).c 
+      : getTempFromCelsius(tempValue).f;
+    element.textContent = `${newTemp.toFixed(2)}`;
+    if (!element.nextElementSibling?.classList.contains(Classes.scaleToggle) ){
+      element.textContent += `${TempScales[currentScale]}`
+    }
+  });
+
+  // Update the toggle button
+  if (scaleToggleDiv) {
+    const scaleH2 = scaleToggleDiv.querySelector("h2");
+    if (scaleH2) {
+      scaleH2.textContent = TempScales[currentScale];
+      scaleH2.title = `Toggle scale to ${currentScale === "cs" ? TempScales.fh : TempScales.cs}`;
+    }
+  }
+
+  // Toggle velocity unit
+  currentVelocityUnit = currentVelocityUnit === "kmh" ? "mph" : "kmh";
+  velocityElements.forEach((element) => {
+    const velocityValue = parseFloat(element.textContent || "0");
+    const newVelocity = currentVelocityUnit === "kmh"
+      ? mphToKmh(velocityValue)
+      : kmhToMph(velocityValue);
+    element.textContent = `${newVelocity.toFixed(2)} ${VelocityUnits[currentVelocityUnit]}`;
+  });
+};
 
 export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const container = generateDiv({ classes: [Classes.InfoContainer] });
@@ -27,6 +65,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
     "flex-col",
     "bg-gray-800",
     "p-8",
+    "pb-14",
     "gap-8",
     "rounded-lg",
   );
@@ -44,10 +83,11 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   iconDiv.appendChild(iconImg);
   feelsLikeDiv.appendChild(iconDiv);
 
-  currentScale = "cs" satisfies keyof typeof TempScales;
+  currentScale = "cs";
   const tempToDisplay = data.feelslike.c.toFixed(2);
   const tempH2 = document.createElement("h2");
   tempH2.textContent = tempToDisplay;
+  tempH2.classList.add(Classes.tempValue);
   feelsLikeDiv.appendChild(tempH2);
   const scaleToggleDiv = generateDiv({
     classes: [Classes.scaleToggle],
@@ -88,6 +128,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
     FontSizes.H2,
     "cursor-pointer",
     "font-semibold",
+    "hover:text-blue-600",
   );
   descriptionP.classList.add(textColor, "text-lg");
 
@@ -156,6 +197,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   tempData.classList.add(Classes.RealTemp);
   tempTitle.textContent = "Temperature";
   tempData.textContent = `${data.temperature.c.toFixed(2)}${TempScales.cs}`;
+  tempData.classList.add(Classes.tempValue);
   tempRow.appendChild(tempTitle);
   tempRow.appendChild(tempData);
   thirdSection.appendChild(tempRow);
@@ -164,8 +206,9 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const windspeedTitle = document.createElement("h3");
   const windspeedData = document.createElement("h3");
   windspeedTitle.textContent = "Windspeed";
-  currentVelocityUnit = "kmh" satisfies keyof typeof VelocityUnits;
+  currentVelocityUnit = "kmh" as keyof typeof VelocityUnits;
   windspeedData.textContent = `${data.windspeed.k.toFixed(2)} ${VelocityUnits.kmh}`;
+  windspeedData.classList.add(Classes.velocityValue);
   windspeedRow.appendChild(windspeedTitle);
   windspeedRow.appendChild(windspeedData);
   thirdSection.appendChild(windspeedRow);
