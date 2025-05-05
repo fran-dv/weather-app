@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export interface Temperature {
-    c: number; // in Celius
-    f: number; // in Fahrenheit
+  c: number; // in Celius
+  f: number; // in Fahrenheit
 }
 
 export interface WeatherData {
@@ -15,7 +15,7 @@ export interface WeatherData {
   precip: number;
   date: string;
   hour: string;
-  windspeed: number; 
+  windspeed: number;
   conditions: string;
 }
 
@@ -31,7 +31,8 @@ export const visualCrossingResponseSchema = z.object({
     windspeed: z.number(),
     conditions: z.string(),
   }),
-  days: z.array(z.object({ datetime: z.string() })).transform((days) => days[0]),
+  days: z
+    .array(z.object({ datetime: z.string() }))
+    .transform((days) => days[0]),
   description: z.string(),
-})
-
+});
