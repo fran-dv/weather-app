@@ -14,5 +14,5 @@ export interface Geolocation {
 
 export const ipApiResponseSchema = z.object({
   city: z.string(),
-  country: z.string(),
+  country_name: z.string(),
 });

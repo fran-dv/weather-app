@@ -6,7 +6,7 @@ const transformSchemaToGeolocation = (
 ): Geolocation => {
   return {
     city: data.city,
-    country: data.country,
+    country: data.country_name,
   };
 };
 
