@@ -1,1 +1,1 @@
-export * from "./visualCrossing";
+export * from './visual-crossing/visual-crossing';

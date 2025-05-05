@@ -1,1 +1,1 @@
-export * from "./api/visualCrossing";
+export * from "./api/visual-crossing/visual-crossing";
