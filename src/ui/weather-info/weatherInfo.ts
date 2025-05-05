@@ -31,7 +31,7 @@ export const toggleTempScale = () => {
     const newTemp = currentScale === "cs"
       ? getTempFromFahrenheit(tempValue).c 
       : getTempFromCelsius(tempValue).f;
-    element.textContent = `${newTemp.toFixed(2)}`;
+    element.textContent = `${newTemp.toFixed(1)}`;
     if (!element.nextElementSibling?.classList.contains(Classes.scaleToggle) ){
       element.textContent += `${TempScales[currentScale]}`
     }
@@ -53,7 +53,7 @@ export const toggleTempScale = () => {
     const newVelocity = currentVelocityUnit === "kmh"
       ? mphToKmh(velocityValue)
       : kmhToMph(velocityValue);
-    element.textContent = `${newVelocity.toFixed(2)} ${VelocityUnits[currentVelocityUnit]}`;
+    element.textContent = `${newVelocity.toFixed(1)} ${VelocityUnits[currentVelocityUnit]}`;
   });
 };
 
@@ -84,9 +84,10 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   feelsLikeDiv.appendChild(iconDiv);
 
   currentScale = "cs";
-  const tempToDisplay = data.feelslike.c.toFixed(2);
+  const tempToDisplay = data.feelslike.c.toFixed(1);
   const tempH2 = document.createElement("h2");
   tempH2.textContent = tempToDisplay;
+  tempH2.title = "Feelslike temperature";
   tempH2.classList.add(Classes.tempValue);
   feelsLikeDiv.appendChild(tempH2);
   const scaleToggleDiv = generateDiv({
@@ -177,7 +178,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const precipTitle = document.createElement("h3");
   const precipData = document.createElement("h3");
   precipTitle.textContent = "Precipitation";
-  precipData.textContent = `${data.precip.toFixed(2)}%`;
+  precipData.textContent = `${data.precip.toFixed(1)}%`;
   precipRow.appendChild(precipTitle);
   precipRow.appendChild(precipData);
   thirdSection.appendChild(precipRow);
@@ -186,7 +187,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const humidityTitle = document.createElement("h3");
   const humidityData = document.createElement("h3");
   humidityTitle.textContent = "Humidity";
-  humidityData.textContent = `${data.humidity.toFixed(2)}%`;
+  humidityData.textContent = `${data.humidity.toFixed(1)}%`;
   humidityRow.appendChild(humidityTitle);
   humidityRow.appendChild(humidityData);
   thirdSection.appendChild(humidityRow);
@@ -196,7 +197,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const tempData = document.createElement("h3");
   tempData.classList.add(Classes.RealTemp);
   tempTitle.textContent = "Temperature";
-  tempData.textContent = `${data.temperature.c.toFixed(2)}${TempScales.cs}`;
+  tempData.textContent = `${data.temperature.c.toFixed(1)}${TempScales.cs}`;
   tempData.classList.add(Classes.tempValue);
   tempRow.appendChild(tempTitle);
   tempRow.appendChild(tempData);
@@ -207,7 +208,7 @@ export const generateWeatherInfoDiv = (data: WeatherData): HTMLDivElement => {
   const windspeedData = document.createElement("h3");
   windspeedTitle.textContent = "Windspeed";
   currentVelocityUnit = "kmh" as keyof typeof VelocityUnits;
-  windspeedData.textContent = `${data.windspeed.k.toFixed(2)} ${VelocityUnits.kmh}`;
+  windspeedData.textContent = `${data.windspeed.k.toFixed(1)} ${VelocityUnits.kmh}`;
   windspeedData.classList.add(Classes.velocityValue);
   windspeedRow.appendChild(windspeedTitle);
   windspeedRow.appendChild(windspeedData);
