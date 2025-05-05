@@ -2,7 +2,7 @@ export type FetcherPromise = Promise<{ error?: Error; status?: number } | any>;
 
 export const fetchWithErrorHandle = async (url: string): FetcherPromise => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { mode: "cors" });
     if (!response.ok) {
       return {
         error: new Error(`An errror ocurred! Status: ${response.status}`),
