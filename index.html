@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/weather-app/assets/favicon-TyjVAB3m.svg"
+    />
+    <script type="module" crossorigin src="/weather-app/assets/main-BKDz1zBm.js"></script>
+    <link rel="stylesheet" crossorigin href="/weather-app/assets/main-BwUFszY6.css">
+  </head>
+  <body
+    class="flex h-screen w-screen flex-col items-center gap-5 bg-gray-900 p-5 pb-0 sm:p-10 sm:pb-0"
+  >
+    <div
+      id="search-bar"
+      class="flex h-13 w-[90%] rounded-lg border border-gray-400 sm:w-[80%] lg:w-1/2"
+    >
+      <input
+        type="text"
+        placeholder="Enter a location"
+        class="h-full w-full border-0 p-2 text-xl ring-0 focus:outline-none"
+      />
+      <button
+        class="flex h-full w-15 cursor-pointer items-center justify-center rounded-r-lg bg-blue-500 p-2 hover:bg-blue-600"
+      >
+        <img
+          src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%20-0.5%2025%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M5.5%2010.7655C5.50003%208.01511%207.44296%205.64777%2010.1405%205.1113C12.8381%204.57483%2015.539%206.01866%2016.5913%208.55977C17.6437%2011.1009%2016.7544%2014.0315%2014.4674%2015.5593C12.1804%2017.0871%209.13257%2016.7866%207.188%2014.8415C6.10716%2013.7604%205.49998%2012.2942%205.5%2010.7655Z'%20stroke='%23000000'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M17.029%2016.5295L19.5%2019.0005'%20stroke='%23000000'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e"
+          alt="Search"
+          class="w-5/6 text-gray-100 brightness-0 invert filter"
+        />
+      </button>
+    </div>
+
+    <div
+      id="loader"
+      class="mt-auto mb-auto hidden aspect-square w-30 flex-col place-items-center"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <radialGradient
+          id="a6"
+          cx=".66"
+          fx=".66"
+          cy=".3125"
+          fy=".3125"
+          gradientTransform="scale(1.5)"
+        >
+          <stop offset="0" stop-color="#3B82F6"></stop>
+          <stop offset=".3" stop-color="#3B82F6" stop-opacity=".9"></stop>
+          <stop offset=".6" stop-color="#3B82F6" stop-opacity=".6"></stop>
+          <stop offset=".8" stop-color="#3B82F6" stop-opacity=".3"></stop>
+          <stop offset="1" stop-color="#3B82F6" stop-opacity="0"></stop>
+        </radialGradient>
+        <circle
+          transform-origin="center"
+          fill="none"
+          stroke="url(#a6)"
+          stroke-width="15"
+          stroke-linecap="round"
+          stroke-dasharray="200 1000"
+          stroke-dashoffset="0"
+          cx="100"
+          cy="100"
+          r="70"
+        >
+          <animateTransform
+            type="rotate"
+            attributeName="transform"
+            calcMode="spline"
+            dur="2"
+            values="360;0"
+            keyTimes="0;1"
+            keySplines="0 0 1 1"
+            repeatCount="indefinite"
+          ></animateTransform>
+        </circle>
+        <circle
+          transform-origin="center"
+          fill="none"
+          opacity=".2"
+          stroke="#3B82F6"
+          stroke-width="15"
+          stroke-linecap="round"
+          cx="100"
+          cy="100"
+          r="70"
+        ></circle>
+      </svg>
+      <p class="text-center text-sm font-light text-gray-400">
+        Fetching data...
+      </p>
+    </div>
+
+    <div
+      id="main-content"
+      class="m sm:w-95% mt-auto mb-auto flex place-items-center justify-center lg:w-5/6 xl:w-3/5"
+    ></div>
+
+    <footer
+      class="mt-auto flex h-15 w-screen items-center justify-center bg-gray-800"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-sm text-gray-400">
+          Weather data from
+          <a
+            href="https://www.visualcrossing.com/"
+            class="hover:underlin transition-colors hover:text-blue-400"
+            target="_blank"
+          >
+            Visual Crossing
+          </a>
+          | Check the repository
+          <a
+            href="https://github.com/your-repo"
+            class="ml-1 inline-flex items-center text-center font-medium text-blue-400 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+            <svg
+              class="ml-1 h-4 w-4 align-middle"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
