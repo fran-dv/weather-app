@@ -3,7 +3,10 @@ import { generateDiv } from "@fran-dv/ui-components";
 import { Icons, iconsSvg } from "./weather-icons";
 import { format } from "date-fns";
 import { Classes, DataClick } from "@/ui";
-import { getTempFromCelsius, getTempFromFahrenheit } from "@/utilities/temperatureConversor.utility";
+import {
+  getTempFromCelsius,
+  getTempFromFahrenheit,
+} from "@/utilities/temperatureConversor.utility";
 import { kmhToMph, mphToKmh } from "@/utilities/velocityConverter.utility";
 
 export enum TempScales {
@@ -21,19 +24,22 @@ let currentVelocityUnit: keyof typeof VelocityUnits;
 
 export const toggleTempScale = () => {
   const tempElements = document.querySelectorAll(`.${Classes.tempValue}`);
-  const velocityElements = document.querySelectorAll(`.${Classes.velocityValue}`);
+  const velocityElements = document.querySelectorAll(
+    `.${Classes.velocityValue}`,
+  );
   const scaleToggleDiv = document.querySelector(`.${Classes.scaleToggle}`);
 
   // Toggle temperature scale
   currentScale = currentScale === "cs" ? "fh" : "cs";
   tempElements.forEach((element) => {
     const tempValue = parseFloat(element.textContent || "0");
-    const newTemp = currentScale === "cs"
-      ? getTempFromFahrenheit(tempValue).c 
-      : getTempFromCelsius(tempValue).f;
+    const newTemp =
+      currentScale === "cs"
+        ? getTempFromFahrenheit(tempValue).c
+        : getTempFromCelsius(tempValue).f;
     element.textContent = `${newTemp.toFixed(1)}`;
-    if (!element.nextElementSibling?.classList.contains(Classes.scaleToggle) ){
-      element.textContent += `${TempScales[currentScale]}`
+    if (!element.nextElementSibling?.classList.contains(Classes.scaleToggle)) {
+      element.textContent += `${TempScales[currentScale]}`;
     }
   });
 
@@ -50,9 +56,10 @@ export const toggleTempScale = () => {
   currentVelocityUnit = currentVelocityUnit === "kmh" ? "mph" : "kmh";
   velocityElements.forEach((element) => {
     const velocityValue = parseFloat(element.textContent || "0");
-    const newVelocity = currentVelocityUnit === "kmh"
-      ? mphToKmh(velocityValue)
-      : kmhToMph(velocityValue);
+    const newVelocity =
+      currentVelocityUnit === "kmh"
+        ? mphToKmh(velocityValue)
+        : kmhToMph(velocityValue);
     element.textContent = `${newVelocity.toFixed(1)} ${VelocityUnits[currentVelocityUnit]}`;
   });
 };

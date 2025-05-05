@@ -18,6 +18,6 @@ export const getVelocityFromMph = (mph: number): Velocity => {
 export const getVelocityFromKmh = (kmh: number): Velocity => {
   return {
     k: kmh,
-    m: kmhToMph(kmh), 
+    m: kmhToMph(kmh),
   };
 };
