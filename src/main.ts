@@ -1,5 +1,6 @@
 import "@/index.css";
 import { addListenersToSearchBar, DataClick, Ids, toggleTempScale } from "@/ui";
+import { getWeatherOfUserCurrentGeolocation } from "@/core";
 
 const searchBar: HTMLDivElement | null = document.querySelector(
   `#${Ids.searchBar}`,
@@ -9,6 +10,9 @@ if (searchBar) {
 } else {
   console.error(`Search bar not found. Tried with id ${Ids.searchBar}`);
 }
+
+// fetch the user geolocation and display the weather data of it
+getWeatherOfUserCurrentGeolocation();
 
 // Click events delegation
 type Target = HTMLElement | null;
