@@ -6,7 +6,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather app</title>
   </head>
-  <body>
+  <body
+    class="flex h-screen w-screen flex-col items-center gap-5 bg-gray-900 p-10 pb-0"
+  >
+    <div
+      id="search-bar"
+      class="flex h-13 w-1/2 rounded-lg border border-gray-400"
+    >
+      <input
+        type="text"
+        placeholder="Enter a location"
+        class="h-full w-full border-0 p-2 ring-0 focus:outline-none"
+      />
+      <div
+        class="flex h-full w-15 cursor-pointer items-center justify-center rounded-r-lg bg-blue-500 p-2 hover:bg-blue-600"
+      >
+        <img
+          src="./src/assets/image/search.svg"
+          alt="Search"
+          class="w-2/3 text-gray-100 brightness-0 invert filter"
+        />
+      </div>
+    </div>
+
+    <div
+      id="loader"
+      class="mt-auto mb-auto aspect-square w-30 flex-col place-items-center"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <radialGradient
+          id="a6"
+          cx=".66"
+          fx=".66"
+          cy=".3125"
+          fy=".3125"
+          gradientTransform="scale(1.5)"
+        >
+          <stop offset="0" stop-color="#3B82F6"></stop>
+          <stop offset=".3" stop-color="#3B82F6" stop-opacity=".9"></stop>
+          <stop offset=".6" stop-color="#3B82F6" stop-opacity=".6"></stop>
+          <stop offset=".8" stop-color="#3B82F6" stop-opacity=".3"></stop>
+          <stop offset="1" stop-color="#3B82F6" stop-opacity="0"></stop>
+        </radialGradient>
+        <circle
+          transform-origin="center"
+          fill="none"
+          stroke="url(#a6)"
+          stroke-width="15"
+          stroke-linecap="round"
+          stroke-dasharray="200 1000"
+          stroke-dashoffset="0"
+          cx="100"
+          cy="100"
+          r="70"
+        >
+          <animateTransform
+            type="rotate"
+            attributeName="transform"
+            calcMode="spline"
+            dur="2"
+            values="360;0"
+            keyTimes="0;1"
+            keySplines="0 0 1 1"
+            repeatCount="indefinite"
+          ></animateTransform>
+        </circle>
+        <circle
+          transform-origin="center"
+          fill="none"
+          opacity=".2"
+          stroke="#3B82F6"
+          stroke-width="15"
+          stroke-linecap="round"
+          cx="100"
+          cy="100"
+          r="70"
+        ></circle>
+      </svg>
+      <p class="text-center text-sm font-light text-gray-400">
+        Fetching data...
+      </p>
+    </div>
+
+    <div
+      id="main-content"
+      class="m mt-auto mb-auto sm:w-4/5 lg:w-5/6 xl:w-3/5"
+    ></div>
+
+    <footer
+      class="mt-auto flex h-15 w-screen items-center justify-center bg-gray-800"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-sm text-gray-400">
+          Weather data from
+          <a
+            href="https://www.visualcrossing.com/"
+            class="hover:underlin transition-colors hover:text-blue-400"
+            target="_blank"
+          >
+            Visual Crossing
+          </a>
+          | Check the repository
+          <a
+            href="https://github.com/your-repo"
+            class="ml-1 inline-flex items-center text-center font-medium text-blue-400 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+            <svg
+              class="ml-1 h-4 w-4 align-middle"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </p>
+      </div>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

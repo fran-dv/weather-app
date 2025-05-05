@@ -1,4 +1,5 @@
 import { Location } from "@/core";
+import { setLoading } from "@/ui";
 import { fetchWithErrorHandle } from "@/utilities";
 
 const getVisualCrossingUrl = (location: Location): string => {
@@ -11,12 +12,16 @@ interface Props {
   location: Location;
 }
 
-export const fetchWeatherDataByLocation = async ({ location }: Props): Promise<void | JSON> => {
+export const fetchWeatherDataByLocation = async ({
+  location,
+}: Props): Promise<void | JSON> => {
+  setLoading(true);
+
   const weatherJSON = await fetchWithErrorHandle(
     getVisualCrossingUrl(location),
-  );
+  ).finally(() => setLoading(false));
 
-  if (weatherJSON.error) {
+  if ("error" in weatherJSON) {
     // Invalid location passed
     if (weatherJSON.status === 400) {
       console.error(
